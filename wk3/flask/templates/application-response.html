@@ -1,11 +1,27 @@
 <!doctype html>
 <html>
 <head>
-    <title>Application Response</title>
+  <title>Application Form</title>
+
+  <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
+  <h1>Application Form</h1>
+  <p>Please enter your first name, last name, and select the position you wish
+  to apply for: </p>
 
-<!-- fill this in -->
-
+  <form action="/application-success">
+    <label>First Name <input type="text" name="first_name"></label></br>
+    <label>Last Name <input type="text" name="last_name"></label></br>
+    <label>
+      Position
+      <select name="job_title">
+        <option value="software engineer">Software Engineer</option>
+        <option value="qa engineer">QA Engineer</option>
+        <option value="product manager">Product Manager</option>
+      </select>
+    </label></br>
+    <input type="submit">
+  </form>
 </body>
 </html>

@@ -9,7 +9,14 @@ app = Flask(__name__)
 app.secret_key = "ABC"
 
 
-# YOUR ROUTES GO HERE
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/application-form")
+def application():
+    return render_template("application-response.html")
 
 
 if __name__ == "__main__":
