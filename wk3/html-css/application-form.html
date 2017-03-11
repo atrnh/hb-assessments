@@ -1,11 +1,23 @@
 <!doctype html>
 <html>
 <head>
-    <title>Application Form</title>
+  <title>Application Form</title>
 </head>
 <body>
+  <h1>Application Form</h1>
+  <p>Please enter your first name, last name, and select the position you wish
+  to apply for: </p>
 
-<!-- your html goes here -->
-
+  <form action="/application-success">
+    First Name <input type="text" name="first_name"></br>
+    Last Name <input type="text" name="last_name"></br>
+    Position
+    <select name="job_title">
+      <option value="software engineer">Software Engineer</option>
+      <option value="qa engineer">QA Engineer</option>
+      <option value="product manager">Product Manager</option>
+    </select></br>
+    <input type="submit">
+  </form>
 </body>
 </html>
