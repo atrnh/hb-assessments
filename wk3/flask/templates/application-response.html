@@ -7,18 +7,19 @@
 </head>
 <body>
   <h1>Application Form</h1>
-  <p>Please enter your first name, last name, and select the position you wish
-  to apply for: </p>
+  <p>Please enter your first name, last name, salary requirement,and select the
+  position you wish to apply for: </p>
 
   <form action="/application-success">
     <label>First Name <input type="text" name="first_name"></label></br>
     <label>Last Name <input type="text" name="last_name"></label></br>
+    <label>Salary Requirement <input type="text" name="salary"></label></br>
     <label>
       Position
-      <select name="job_title">
-        <option value="software engineer">Software Engineer</option>
-        <option value="qa engineer">QA Engineer</option>
-        <option value="product manager">Product Manager</option>
+      <select name="job">
+        {% for job in jobs %}
+          <option value="{{ job }}">{{ job }}</option>
+        {% endfor %}
       </select>
     </label></br>
     <input type="submit">

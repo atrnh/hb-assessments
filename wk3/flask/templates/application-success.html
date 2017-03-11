@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head>
+  <title>Application Form</title>
+
+  <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+  <h1>Success!</h1>
+  <p>Thank you, {{ first_name }} {{ last_name }}, for applying to be a {{ job }}.
+  Your minimum salary requirement is {{ "${:,.2f}".format(salary) }}</p>
+</body>
+</html>
