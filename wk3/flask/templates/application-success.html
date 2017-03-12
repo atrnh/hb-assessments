@@ -6,9 +6,9 @@
   <p>Thank you, {{ first_name }} {{ last_name }}, for applying to be a {{ job }}.
   Your minimum salary requirement is
   {% if show_decimals %}
-    {{ "${:,.2f}".format(salary) }}
+    {{ "${:,.2f}".format(salary) }}.
   {% else %}
-    {{ "${:,}".format(salary) }}
+    {{ "${:,}".format(salary) }}.
   {% endif %}
   </p>
 {% endblock %}

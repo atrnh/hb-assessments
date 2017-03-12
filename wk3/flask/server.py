@@ -30,7 +30,7 @@ def application():
 def application_success():
     """Displays info submitted from job application."""
 
-    show_decimals = False
+    show_decimals = True
 
     first_name = request.args.get("first_name")
     last_name = request.args.get("last_name")
@@ -40,7 +40,7 @@ def application_success():
     salary = float(request.args.get("salary"))
     if salary.is_integer():
         salary = int(salary)
-        show_decimals = True
+        show_decimals = False
 
     return render_template("application-success.html",
                            first_name=first_name,
