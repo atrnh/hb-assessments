@@ -30,16 +30,24 @@ def application():
 def application_success():
     """Displays info submitted from job application."""
 
+    show_decimals = False
+
     first_name = request.args.get("first_name")
     last_name = request.args.get("last_name")
-    salary = float(request.args.get("salary"))
     job = request.args.get("job")
+
+    # Show decimals in template if necessary
+    salary = float(request.args.get("salary"))
+    if salary.is_integer():
+        salary = int(salary)
+        show_decimals = True
 
     return render_template("application-success.html",
                            first_name=first_name,
                            last_name=last_name,
                            salary=salary,
-                           job=job)
+                           job=job,
+                           show_decimals=show_decimals,)
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the

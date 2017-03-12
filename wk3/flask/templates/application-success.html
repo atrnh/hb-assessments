@@ -4,5 +4,11 @@
 {% block content %}
   <h1>Success!</h1>
   <p>Thank you, {{ first_name }} {{ last_name }}, for applying to be a {{ job }}.
-  Your minimum salary requirement is {{ "${:,.2f}".format(salary) }}</p>
+  Your minimum salary requirement is
+  {% if show_decimals %}
+    {{ "${:,.2f}".format(salary) }}
+  {% else %}
+    {{ "${:,}".format(salary) }}
+  {% endif %}
+  </p>
 {% endblock %}
