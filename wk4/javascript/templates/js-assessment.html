@@ -148,10 +148,13 @@
   var image = $('#kittenz-rule');
 
   function catToDog() {
-    image.attr({
-      'src': 'http://i.imgur.com/hehXhFu.jpg',
-      'width': '500'
+    image.hide(function () {
+      image.attr({
+        'src': 'http://i.imgur.com/hehXhFu.jpg',
+        'width': '500'
+      });
     });
+    image.slideDown();
   }
 
   image.dblclick(catToDog);
