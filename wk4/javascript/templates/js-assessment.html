@@ -189,12 +189,13 @@
   var playButton = $('#play-guessing-game');
   var guessForm = $('#guessing-game-form');
   var msg = $('#number-guessing-msg');
+
   var guess;
   var randNum;
 
   function startGame() {
     playButton.prop('disabled', true);
-    $('#guessing-game-form input').prop('disabled', false);
+    guessForm.children('input').prop('disabled', false);
 
     randNum = Math.floor(Math.random() * 100);
 
@@ -202,8 +203,9 @@
   }
 
   function endGame() {
+    // Reset form
     $('#number-guessed').val('');
-    $('#guessing-game-form input').prop('disabled', true);
+    guessForm.children('input').prop('disabled', true);
     playButton.prop('disabled', false);
 
     msg.html('Congratulations you guessed correctly. Press play to play again');
@@ -268,6 +270,8 @@
 <script>
   "use strict";
 
+  var form = $('#t-rex-form');
+
   // NOTE: DO NOT CHANGE THE CODE OF THIS FUNCTION
   function showTRexResults(results) {
 
@@ -289,7 +293,13 @@
     $("#t-rex-img").append(tRexPhoto);
   }
 
-  // put your code here
+  function launchAttack(evt) {
+    evt.preventDefault();
+
+    $.post('/t-rex-attack.json', form.serialize(), showTRexResults);
+  }
+
+  form.submit(launchAttack);
 
 </script>
 
