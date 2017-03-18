@@ -5,6 +5,8 @@
   <title>Skills JavaScript</title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="static/styles.css">
+
+  <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 </head>
 <body class="container">
 
@@ -38,7 +40,13 @@
 
 <script>
   "use strict";
-  // code here for above-problem
+
+  function helloToGoodbye() {
+    document.getElementById('message-to-change').innerHTML = 'goodbye';
+  }
+
+  document.getElementById('change-hello-to-goodbye-button')
+    .addEventListener('click', helloToGoodbye);
 </script>
 
 <div class="hint">
@@ -66,7 +74,15 @@
 
 <script>
   "use strict";
-  // code here for above problem
+
+  function alertPreventDefault(evt) {
+    evt.preventDefault();
+
+    alert('Alert');
+  }
+
+  document.getElementById('prevent-form-submission-form')
+    .addEventListener('submit', alertPreventDefault);
 </script>
 
 <div class="hint">
@@ -89,22 +105,15 @@
 <script>
   "use strict";
 
-//  Here's a stub of a function you can use!
+  function reverseString() {
+    var msg = "Porcupines are cute";
 
-//  function reverseString() {
-//    var msg = "Porcupines are cute";
-//
-//    // do some stuff here to reverse that string into a new variable
-//    var newMsg = "This should be the reversed string";
-//
-//    alert(newMsg);
-//  }
+    var newMsg = Array.from(msg).reverse().join('');
+    alert(newMsg);
+  }
 
-// Here's a stub of event stuff you could use
-//
-
-//  var button = document.getElementById('reverse-string-button');
-//  button.addEventListener('click', reverseString);
+  var button = document.getElementById('reverse-string-button');
+  button.addEventListener('click', reverseString);
 </script>
 
 
@@ -136,7 +145,16 @@
 
 <script>
   "use strict";
-  // put your code here
+  var image = $('#kittenz-rule');
+
+  function catToDog() {
+    image.attr({
+      'src': 'http://i.imgur.com/hehXhFu.jpg',
+      'width': '500'
+    });
+  }
+
+  image.dblclick(catToDog);
 </script>
 
 <div class="hint">
@@ -167,7 +185,47 @@
 
 <script>
   "use strict";
-  // put your code here
+
+  var playButton = $('#play-guessing-game');
+  var guessForm = $('#guessing-game-form');
+  var msg = $('#number-guessing-msg');
+  var guess;
+  var randNum;
+
+  function startGame() {
+    playButton.prop('disabled', true);
+    $('#guessing-game-form input').prop('disabled', false);
+
+    randNum = Math.floor(Math.random() * 100);
+    console.log('answer', randNum);
+
+    msg.html('Guess a number');
+  }
+
+  function endGame() {
+    $('#number-guessed').val('');
+    $('#guessing-game-form input').prop('disabled', true);
+    playButton.prop('disabled', false);
+
+    msg.html('Congratulations you guessed correctly. Press play to play again');
+  }
+
+  function updateGame(evt) {
+    evt.preventDefault();
+    guess = Number.parseInt($('#number-guessed').val());
+    console.log('guess', guess);
+
+    if (guess === randNum) {
+      endGame();
+    } else if (guess < randNum) {
+      msg.html('Your guess was too low, guess again');
+    } else {
+      msg.html('Your guess was too high, guess again');
+    }
+  }
+
+  playButton.click(startGame);
+  guessForm.submit(updateGame);
 </script>
 
 
