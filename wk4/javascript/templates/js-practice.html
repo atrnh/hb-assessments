@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Practice JavaScript</title>
   <link rel="stylesheet" href="static/styles.css">
+
+  <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 </head>
 <body>
 
@@ -36,7 +38,11 @@
 
 <script>
   "use strict";
-  // code here for above problem
+
+  document.getElementById('popup-alert-button')
+    .addEventListener('click', function () {
+      alert('Pop!')
+    });
 </script>
 
 
@@ -78,7 +84,24 @@
 <script>
   "use strict";
 
-  // code here for the above problem
+  function printMultiples(evt) {
+    evt.preventDefault();
+
+    var multiplicand = Number.parseInt(
+      document.getElementById('mults-of').value, 10
+    );  // NOTE: this worked fine without having to typecast form values
+    var max = document.getElementById('max').value;
+    var multiples = [];
+
+    for (var i = 1; i <= max; i++) {
+      multiples.push(multiplicand * i);
+    }
+
+    console.log(multiples);
+  }
+
+  document.getElementById('multiply-btn')
+    .addEventListener('click', printMultiples);
 
 </script>
 
@@ -112,7 +135,10 @@
 
 <script>
   "use strict";
-  // code here for above problem
+
+  $('.find-me').on('click', function () {
+    alert('Pop!');
+  });
 </script>
 
 <div class="hint">
@@ -144,7 +170,16 @@
 
 <script>
   "use strict";
-  // put your code here
+
+  function animatePorcupine() {
+    $('#cute-porcupine-image').slideDown(5000);
+  }
+
+  function displayPorcupine() {
+    window.setTimeout(animatePorcupine, 1000);
+  }
+
+  $('#make-a-porcupine').on('click', displayPorcupine);
 </script>
 
 <div class="hint">
