@@ -197,7 +197,6 @@
     $('#guessing-game-form input').prop('disabled', false);
 
     randNum = Math.floor(Math.random() * 100);
-    console.log('answer', randNum);
 
     msg.html('Guess a number');
   }
@@ -213,7 +212,6 @@
   function updateGame(evt) {
     evt.preventDefault();
     guess = Number.parseInt($('#number-guessed').val());
-    console.log('guess', guess);
 
     if (guess === randNum) {
       endGame();
