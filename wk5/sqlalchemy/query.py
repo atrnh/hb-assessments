@@ -78,25 +78,57 @@ def get_model_info(year):
     """Takes in a year and prints out each model name, brand name, and brand
     headquarters for that year using only ONE database query."""
 
-    pass
+    models = Model.query.options(db.joinedload('brand')).filter_by(
+        year=year).all()
+
+    if models:
+        print '\nModels from the year {}:\n'.format(year)
+
+        for model in models:
+            print ('Model Name: {model_name}\n' +
+                   'Brand: {brand_name}\n' +
+                   'Brand HQ: {brand_hq}\n'
+                   ).format(model_name=model.name,
+                            brand_name=model.brand.name,
+                            brand_hq=model.brand.headquarters,
+                            )
+    else:
+        print '\nThere were no models created that year.'
 
 
 def get_brands_summary():
     """Prints out each brand name (once) and all of that brand's models,
     including their year, using only ONE database query."""
 
-    pass
+    brands_with_models = Brand.query.options(db.joinedload('models')).all()
+
+    for brand in brands_with_models:
+        print '\n{}:'.format(brand.name.upper())
+
+        for model in brand.models:
+            print ('\tModel: {model_name}\n' +
+                   '\tYear: {model_year}\n'
+                   ).format(model_name=model.name, model_year=model.year)
 
 
 def search_brands_by_name(mystr):
     """Returns all Brand objects corresponding to brands whose names include
     the given string."""
 
-    pass
+    return Brand.query.filter(Brand.name.like('%' + mystr + '%')).all()
 
 
 def get_models_between(start_year, end_year):
     """Returns all Model objects corresponding to models made between
     start_year (inclusive) and end_year (exclusive)."""
 
-    pass
+    # Not sure how to do this without raising a TypeError
+    # Looked for information at
+    # http://docs.sqlalchemy.org/en/latest/changelog/migration_06.html
+    # But I didn't really understand it
+
+    # return Model.query.filter(Model.year >= start_year and
+    #                           Model.year < end_year).all()
+
+    models = Model.query.filter(Model.year >= start_year).all()
+    return [model for model in models if model.year < end_year]
