@@ -23,11 +23,16 @@ init_app()
 # 1. What is the datatype of the returned value of
 # ``Brand.query.filter_by(name='Ford')``?
 
+# A BaseQuery object.
+
 
 
 # 2. In your own words, what is an association table, and what type of
 # relationship (many to one, many to many, one to one, etc.) does an
 # association table manage?
+
+# An association table helps to bind a many-to-many relationship between other
+# tables. Otherwise, it does not contain meaningful information.
 
 
 
@@ -93,4 +98,3 @@ def get_models_between(start_year, end_year):
     start_year (inclusive) and end_year (exclusive)."""
 
     pass
-
