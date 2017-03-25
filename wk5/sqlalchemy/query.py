@@ -110,17 +110,51 @@ def get_brands_summary():
     #                '\tYear: {model_year}\n'
     #                ).format(model_name=model.name, model_year=model.year)
 
-    # Here's an interesting way of doing it:
-    models_by_brand = {brand.name:
-                       [('\tModel: {model_name}\n' +
-                         '\tYear: {model_year}\n'
-                         ).format(model_name=model.name, model_year=model.year)
-                        for model in brand.models]
-                       for brand in brands_with_models}
+    # # Here's an interesting way of doing it:
+    #
+    # # A dictionary of all brands' summaries.
+    # # Key is brand name and value is a list of strings that represent the name
+    # # and year for each model of that brand.
+    # models_by_brand = {brand.name:
+    #                    [('\tModel: {model_name}\n' +
+    #                      '\tYear: {model_year}\n'
+    #                      ).format(model_name=model.name, model_year=model.year)
+    #                     for model in brand.models]
+    #                    for brand in brands_with_models}
+    #
+    # for brand_name, model_info in sorted(models_by_brand.items()):
+    #     print '\n{}:'.format(brand_name.upper())
+    #     print '\n'.join(model_info)
 
-    for brand_name, model_info in sorted(models_by_brand.items()):
-        print '\n{}:'.format(brand_name.upper())
-        print '\n'.join(model_info)
+    # Here's a more readable way of doing the same thing (see above):
+    def make_summaries(dictionary, brand):
+        """Make a dictionary of all brands' summaries.
+
+        For use with reduce()
+        Key is brand name and value is a string of all models' names and years,
+        delimited by a new line.
+        """
+
+        # Each item is an individual model's name and year as a string
+        # Each string looks like this:
+        #   Model: Mini Cooper
+        #   Year: 1959
+        model_info = [('\tModel: {model_name}\n' +
+                       '\tYear: {model_year}\n'
+                       ).format(model_name=model.name,
+                                model_year=model.year)
+                      for model in brand.models]
+        summary = '\n'.join(model_info)  # Make the summary pretty
+
+        dictionary[brand.name] = summary
+
+        return dictionary
+
+    models_by_brand = reduce(make_summaries, brands_with_models, {})
+
+    for brand_name, summary in sorted(models_by_brand.items()):
+        print '\n{}'.format(brand_name.upper())
+        print summary
 
 
 def search_brands_by_name(mystr):
