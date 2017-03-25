@@ -102,6 +102,8 @@ def get_brands_summary():
 
     brands_with_models = Brand.query.options(db.joinedload('models')).all()
 
+    # Here's the first way I did it:
+
     # for brand in brands_with_models:
     #     print '\n{}:'.format(brand.name.upper())
     #
@@ -110,8 +112,8 @@ def get_brands_summary():
     #                '\tYear: {model_year}\n'
     #                ).format(model_name=model.name, model_year=model.year)
 
-    # # Here's an interesting way of doing it:
-    #
+    # Here's an interesting way of doing it:
+
     # # A dictionary of all brands' summaries.
     # # Key is brand name and value is a list of strings that represent the name
     # # and year for each model of that brand.
@@ -173,6 +175,7 @@ def get_models_between(start_year, end_year):
     # http://docs.sqlalchemy.org/en/latest/changelog/migration_06.html
     # But I didn't really understand it
 
+    # Here's the code that broke:
     # return Model.query.filter(Model.year >= start_year and
     #                           Model.year < end_year).all()
 
