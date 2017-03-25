@@ -102,13 +102,25 @@ def get_brands_summary():
 
     brands_with_models = Brand.query.options(db.joinedload('models')).all()
 
-    for brand in brands_with_models:
-        print '\n{}:'.format(brand.name.upper())
+    # for brand in brands_with_models:
+    #     print '\n{}:'.format(brand.name.upper())
+    #
+    #     for model in brand.models:
+    #         print ('\tModel: {model_name}\n' +
+    #                '\tYear: {model_year}\n'
+    #                ).format(model_name=model.name, model_year=model.year)
 
-        for model in brand.models:
-            print ('\tModel: {model_name}\n' +
-                   '\tYear: {model_year}\n'
-                   ).format(model_name=model.name, model_year=model.year)
+    # Here's an interesting way of doing it:
+    models_by_brand = {brand.name:
+                       [('\tModel: {model_name}\n' +
+                         '\tYear: {model_year}\n'
+                         ).format(model_name=model.name, model_year=model.year)
+                        for model in brand.models]
+                       for brand in brands_with_models}
+
+    for brand_name, model_info in sorted(models_by_brand.items()):
+        print '\n{}:'.format(brand_name.upper())
+        print '\n'.join(model_info)
 
 
 def search_brands_by_name(mystr):
@@ -130,5 +142,6 @@ def get_models_between(start_year, end_year):
     # return Model.query.filter(Model.year >= start_year and
     #                           Model.year < end_year).all()
 
+    # Here's a really ugly way to do it:
     models = Model.query.filter(Model.year >= start_year).all()
     return [model for model in models if model.year < end_year]
