@@ -28,7 +28,8 @@ class Brand(db.Model):
     def __repr__(self):
         """Console representation of Brand object."""
 
-        return '<Brand brand_id={} name={}>'.format(self.brand_id, self.name)
+        return '<Brand brand_id={id} name={name}>'.format(id=self.brand_id,
+                                                          name=self.name)
 
 
 class Model(db.Model):
@@ -45,14 +46,43 @@ class Model(db.Model):
                          )
 
     brand = db.relationship('Brand')
+    awards = db.relationship('Award')
 
     def __repr__(self):
         """Console representation of Model object."""
 
-        return '<Model model_id={} name={} year={}>'.format(self.model_id,
-                                                            self.name,
-                                                            self.year,
-                                                            )
+        return ('<Model model_id={id} name={name}' +
+                'year={year}>').format(id=self.model_id,
+                                       year=self.year,
+                                       name=self.name,
+                                       )
+
+
+class Award(db.Model):
+    """Award for a certain model."""
+
+    __tablename__ = 'awards'
+
+    award_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    year = db.Column(db.Integer)
+    name = db.Column(db.String(50))
+
+    winner_id = db.Column(db.Integer,
+                          db.ForeignKey('models.model_id'),
+                          nullable=True,
+                          )
+
+    model = db.relationship('Model')
+
+    def __repr__(self):
+        """Console representation of Award object."""
+
+        return ('<Award award_id={id} name={name}' +
+                'year={year}>').format(id=self.award_id,
+                                       name=self.name,
+                                       year=self.year,
+                                       )
+
 
 # End Part 1
 
