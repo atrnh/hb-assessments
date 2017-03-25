@@ -15,7 +15,7 @@ db = SQLAlchemy()
 class Brand(db.Model):
     """Car brand."""
 
-    __tablename__ = "brands"
+    __tablename__ = 'brands'
 
     pass
 
