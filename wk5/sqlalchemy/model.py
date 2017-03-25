@@ -17,15 +17,29 @@ class Brand(db.Model):
 
     __tablename__ = 'brands'
 
-    pass
+    brand_id = db.Column(db.String(5), primary_key=True)
+    name = db.Column(db.String(50))
+    founded = db.Column(db.Integer, nullable=True)
+    headquarters = db.Column(db.String(50), nullable=True)
+    discontinued = db.Column(db.Integer, nullable=True)
+
+    models = db.relationship('Model')
 
 
 class Model(db.Model):
     """Car model."""
 
-    __tablename__ = "models"
+    __tablename__ = 'models'
 
-    pass
+    model_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    year = db.Column(db.Integer)
+    name = db.Column(db.String(50))
+
+    brand_id = db.Column(db.String(5),
+                         db.ForeignKey('brands.brand_id'),
+                         )
+
+    brand = db.relationship('Brand')
 
 # End Part 1
 
@@ -39,7 +53,7 @@ def init_app():
     app = Flask(__name__)
 
     connect_to_db(app)
-    print "Connected to DB."
+    print 'Connected to DB.'
 
 
 def connect_to_db(app):
@@ -53,7 +67,7 @@ def connect_to_db(app):
     db.init_app(app)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # As a convenience, if we run this module interactively, it will leave
     # you in a state of being able to work with the database directly.
 
@@ -63,4 +77,4 @@ if __name__ == "__main__":
     app = Flask(__name__)
 
     connect_to_db(app)
-    print "Connected to DB."
+    print 'Connected to DB.'
