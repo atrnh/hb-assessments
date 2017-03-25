@@ -25,6 +25,11 @@ class Brand(db.Model):
 
     models = db.relationship('Model')
 
+    def __repr__(self):
+        """Console representation of Brand object."""
+
+        return '<Brand brand_id={} name={}>'.format(self.brand_id, self.name)
+
 
 class Model(db.Model):
     """Car model."""
@@ -40,6 +45,14 @@ class Model(db.Model):
                          )
 
     brand = db.relationship('Brand')
+
+    def __repr__(self):
+        """Console representation of Model object."""
+
+        return '<Model model_id={} name={} brand_id={}>'.format(self.model_id,
+                                                                self.name,
+                                                                self.brand_id,
+                                                                )
 
 # End Part 1
 
