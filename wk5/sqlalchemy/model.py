@@ -49,12 +49,10 @@ class Model(db.Model):
     def __repr__(self):
         """Console representation of Model object."""
 
-        return """<Model model_id={} name={} year={}
-               brand_id={}>""".format(self.model_id,
-                                      self.name,
-                                      self.year,
-                                      self.brand_id,
-                                      )
+        return '<Model model_id={} name={} year={}>'.format(self.model_id,
+                                                            self.name,
+                                                            self.year,
+                                                            )
 
 # End Part 1
 
