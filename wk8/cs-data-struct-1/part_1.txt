@@ -1,0 +1,53 @@
+****************RUNTIME*******************************************************
+1) The number of animal crackers in the box.
+
+2) O(1)
+   O(log n)
+   O(n)
+   O(n log n)
+   O(n^2)
+   O(2^n)
+
+
+***************STACKS AND QUEUES**********************************************
+1.1) Stack
+1.2) Queue
+1.3) Stack
+
+2) Assigning tables at a restaurant ('first come, first serve'), breadth first
+   searching a tree
+
+3) Rolling back git commits, depth first searching a tree
+
+
+***************LINKED LISTS***************************************************
+1) The nodes are the rectangles containing a name of a fruit and the word 'next'
+   The nodes are bisected to indicate that they contain two pieces of info. The
+   node's data is stored to the left. In the diagram, they are strings of fruit
+   names ("Apple", "Berry", "Cherry").
+
+   The head is the node containing the string, "Apple". You can tell because
+   the LLIST object's 'head' attribute is pointing to the "Apple" node.
+
+   The tail is the node whose 'next' attribute is pointing to None. The tail of
+   this list is the node containing the string, "Cherry".
+
+2) In singly-linked lists, each node only contains a reference to the node
+   proceeding it (or a reference to None, if it is the tail).
+
+   In doubly-linked lists, each node contains a reference to the node proceeding
+   it and the node preceding it.
+
+3) If we didn't keep track of the tail as an attribute, we would have to
+   traverse the whole list, find the last node (whose 'next' attribute points to
+   None), and then append.
+
+***************TREES**********************************************************
+1) food -> Italian -> Indian -> Mexican -> lasagna -> pizza -> tikka masala ->
+   saag -> burritos
+
+2) food -> Mexican -> enchiladas -> tacos -> burritos -> Indian -> saag ->
+   tikka masala -> Italian -> pizza -> Sicilian -> New York-style -> Chicago-style
+
+3) Binary search trees are constructed with the purpose of making searching for
+   something more efficient. Each parent node can only have 0-2 children.

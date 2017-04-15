@@ -1,5 +1,7 @@
 """Tree class and tree node class."""
 
+import collections
+
 
 class Node(object):
     """Node in a tree."""
@@ -26,9 +28,7 @@ class Node(object):
             2
         """
 
-        # FIXME
-
-        pass
+        return len(self.children)
 
 
 class Tree(object):
@@ -93,8 +93,16 @@ class Tree(object):
 
         """
 
-        # FIXME
-        pass
+        to_visit = collections.deque([self.root])
+
+        while to_visit:
+            node = to_visit.popleft()
+
+            if node.data == data:
+                return node
+
+            to_visit.extend(node.children)
+
 
 if __name__ == "__main__":
     import doctest
@@ -104,4 +112,3 @@ if __name__ == "__main__":
     if not result.failed:
         print "ALL TESTS PASSED. GOOD WORK!"
     print
-
