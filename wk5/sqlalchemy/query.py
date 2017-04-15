@@ -170,15 +170,4 @@ def get_models_between(start_year, end_year):
     """Returns all Model objects corresponding to models made between
     start_year (inclusive) and end_year (exclusive)."""
 
-    # Not sure how to do this without raising a TypeError
-    # Looked for information at
-    # http://docs.sqlalchemy.org/en/latest/changelog/migration_06.html
-    # But I didn't really understand it
-
-    # Here's the code that broke:
-    # return Model.query.filter(Model.year >= start_year and
-    #                           Model.year < end_year).all()
-
-    # Here's a really ugly way to do it:
-    models = Model.query.filter(Model.year >= start_year).all()
-    return [model for model in models if model.year < end_year]
+    return Model.query.filter(Model.year >= start_year, Model.year < end_year).all()
