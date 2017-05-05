@@ -1,0 +1,65 @@
+**************** RECURSION ****************************************************
+1) In computer science, recursion is when you call a function in its own
+   function body.
+2) Base cases are necessary because otherwise, you would have no way to stop
+   making recursive calls.
+
+**************** GRAPHS *******************************************************
+1) A graph is a bunch of nodes that are connected by edges/vertices. Some types
+   of graphs are trees and linked lists.
+2) Trees are a type of graph, except they cannot be cyclic and their edges are
+   directional.
+3) Towns and roads that connect them.
+
+**************** PERFORMANCE OF DIFFERENT DATA STRUCTURES *********************
++----------------------+--------+---------+--------+--------+--------+--------+
+|    DATA STRUCTURE    |  INDEX |  SEARCH |  ADD-R |  ADD-L |  POP-L |  POP-R |
++----------------------+--------+---------+--------+--------+--------+--------+
+|                      |        |         |        |        |        |        |
+| Python List          |  O(1)  |  O(n)   |  O(1)  |  O(n)  |  O(n)  |  O(1)  |
+|                      |        |         |        |        |        |        |
+| Linked List          |  O(n)  |  O(n)   |  O(1)  |  O(n)  |  O(n)  |  O(1)  |
+|                      |        |         |        |        |        |        |
+| Doubly-Linked List   |  O(n)  |  O(n)   |  O(1)  |  O(1)  |  O(1)  |  O(1)  |
+|                      |        |         |        |        |        |        |
+| Queue (Array)        |  x     |  x      |  O(n)  |  x     |  O(n)  |  x     |
+|                      |        |         |        |        |        |        |
+| Queue (LL/DLL)       |  x     |  x      |  O(1)  |  x     |  O(1)  |  x     |
+|                      |        |         |        |        |        |        |
+| Stack (Array/LL/DLL) |  x     |  x      |  O(1)  |  x     |  x     |  O(1)  |
+|                      |        |         |        |        |        |        |
+| Deque (as DLL)       |  x     |  x      |  O(1)  |  O(1)  |  O(1)  |  O(1)  |
++----------------------+--------+---------+--------+--------+--------+--------+
+
++-----------------------+-----------+-----------+-----------+----------+---------+
+|    DATA STRUCTURE     |    GET    |    ADD    |   DELETE  |  ITERATE |  MEMORY |
++-----------------------+-----------+-----------+-----------+----------+---------+
+|                       |           |           |           |          |         |
+| Dictionary (Hash Map) |  O(1)     |  O(1)     |  O(1)     |  O(n)    |  medium |
+|                       |           |           |           |          |         |
+| Set (Hash Map)        |  O(1)     |  O(1)     |  O(1)     |  O(n)    |  medium |
+|                       |           |           |           |          |         |
+| Binary Search Tree    |  O(log n) |  O(log n) |  O(log n) |  O(n)    |  little |
+|                       |           |           |           |          |         |
+| Tree                  |  O(n)     |  O(1)     |  O(1)     |  O(n)    |  little |
++-----------------------+-----------+-----------+-----------+----------+---------+
+
+**************** SORTING ******************************************************
+1) Compare the first item with the next item. If the next item is larger, switch
+   positions.
+   Continue comparing one item with the next item, switching
+   positions if the next item is larger.
+   Continue making passes through the list until your items are sorted. The
+   larger items will bubble to the top.
+
+2) Given a list of items, split the list into individual items.
+   Sort the individual items into sorted pairs.
+   Merge two pairs by comparing the first item of each pair, sorting them
+   appropriately, until you have lists of four items.
+   Continue in this fashion until you have merged all the items.
+
+3) Given a list of items, choose a random pivot point. Place all items lower
+   than the pivot to the left and place all items higher to the right.
+   Now that the pivot is in the right place, sort all the numbers that are lower
+   (to the left) and the numbers that are higher (to the right) in the same
+   manner.
